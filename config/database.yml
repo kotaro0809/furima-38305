@@ -54,8 +54,13 @@
 #   password: <%= ENV['FURIMA_38305_DATABASE_PASSWORD'] %>
 
 
-#データベースの設定 #本番環境ではPostgreSQLを使用を使用可能にする
-  default: &default
+
+
+
+
+#このように変更することで、開発環境およびテスト環境ではMySQLが、本番環境ではPostgreSQLが使用されるようになります
+
+default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
@@ -65,7 +70,7 @@ development:
   username: root
   password:
   host: localhost
-  database: furima_38305_development
+  database: furima-38305_development
 
 test:
   <<: *default
@@ -73,9 +78,10 @@ test:
   username: root
   password:
   host: localhost
-  database: furima_38305_test
+  database: furima-38305_test
 
 production:
   <<: *default
   adapter: postgresql
   url: <%= ENV['DATABASE_URL'] %>
+
