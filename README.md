@@ -2,14 +2,14 @@
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
-| nickname            | string     | null: false, unique: true      |
-| user_password       | string     | null: false,                   |
-| name                | string     | null: false,                   |
-| family_name         | text       | null: false,                   |
-| first_name          | text       | null: false,                   |
-| family_name_kana    | text       | null: false,                   |
-| first_name_kana     | text       | null: false,                   |
-| birth_day           | date       | null: false,                   |
+| nickname            | string     | null: false                    |
+| email               | string     | null: false                    |
+| encrypted_password  | string     | null: false                    |
+| family_name         | string     | null: false                    |
+| first_name          | string     | null: false                    |
+| family_name_kana    | string     | null: false                    |
+| first_name_kana     | string     | null: false                    |
+| birth_day           | date       | null: false                    |
 
 
 
@@ -22,32 +22,31 @@
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
-| item_image          | text       | null: false,                   |
-| item_name           | string     | null: false,                   |
-| description         | text       | null: false,                   |
-| category_id         | integer    | null: false,                   |
-| status_id           | integer    | null: false,                   |
-| shipping_fee_id     | integer    | null: false,                   |
-| prefecture_id       | integer    | null: false,                   |
-| shipping_days_id    | integer    | null: false,                   |
-| price               | integer    | null: false,                   |
-| user_id             | reference  | null: false, foreign_key: true |
+| item_name           | string     | null: false                    |
+| description         | text       | null: false                    |
+| category_id         | integer    | null: false                    |
+| status_id           | integer    | null: false                    |
+| shipping_fee_id     | integer    | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| shipping_day_id     | integer    | null: false                    |
+| price               | integer    | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
 
 ###Association
-- belongs_to :users
+- belongs_to :user
 
 
 ##buyersテーブル
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
-| post_code           | string     | null: false,                   |
-| prefecture_id       | integer    | null: false,                   |
-| address             | string     | null: false,                   |
+| post_code           | string     | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| address             | string     | null: false                    |
 | building            | string     |                                |
-| phon_number         | string     | null: false,                   |
-| user_id             | reference  | null: false, foreign_key: true |
+| phon_number         | string     | null: false                    |
+| user                | reference  | null: false, foreign_key: true |
 
 ###Association
 - belongs_to :users
