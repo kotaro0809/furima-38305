@@ -12,10 +12,12 @@
 | birth_day           | date       | null: false                    |
 
 
-
 ###Association
 - has_many :items
-- has_one  :buyers
+- has_many :record
+
+
+
 
 
 ##itemsテーブル
@@ -35,9 +37,14 @@
 
 ###Association
 - belongs_to :user
+- has_one    :record
+- has_one    :destination
 
 
-##buyersテーブル
+
+
+
+##destinationテーブル
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
@@ -46,7 +53,24 @@
 | address             | string     | null: false                    |
 | building            | string     |                                |
 | phon_number         | string     | null: false                    |
-| user                | reference  | null: false, foreign_key: true |
+
 
 ###Association
-- belongs_to :users
+- has_one    :record
+- belongs_to :item
+
+
+
+
+##recordテーブル
+
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| user                | references | null: false, foreign_key: true |
+| item                | references | null: false, foreign_key: true |
+| destination         | references | null: false, foreign_key: true |
+
+###Association
+- belongs_to :destination
+- belongs_to :item
+- belongs_to :user
