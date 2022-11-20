@@ -67,3 +67,6 @@ end
 
 #deviseを導入
 gem 'devise'
+
+#rspecを導入
+gem 'rspec-rails', '~> 4.0.0'
