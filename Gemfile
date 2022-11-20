@@ -64,3 +64,6 @@ end
 group :production do
   gem 'pg'
 end
+
+#deviseを導入
+gem 'devise'
