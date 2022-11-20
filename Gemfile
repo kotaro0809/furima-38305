@@ -73,3 +73,7 @@ gem 'rspec-rails', '~> 4.0.0'
 
 #binding.pry（バインディングプライ）を導入
 gem 'pry-rails'
+
+#gem factory_botを導入
+gem 'factory_bot_rails'
+
