@@ -26,77 +26,77 @@ RSpec.describe User, type: :model do
        # nicknameが空では登録できないテストコードを記述します
        @user.nickname = ''
        @user.valid?
-       #binding.pry
+       
        expect(@user.errors.full_messages).to include("Nickname can't be blank")
      end
      it 'emailが空では登録できない' do
        # emailが空では登録できないテストコードを記述します
        @user.email = ''
        @user.valid?
-       #binding.pry
+       
        expect(@user.errors.full_messages).to include("Email can't be blank")
      end
      it 'family_nameが空では登録できない' do
        # family_nameが空では登録できないテストコードを記述します
        @user.family_name = ''
        @user.valid?
-       # binding.pry
+       
        expect(@user.errors.full_messages).to include("Family name can't be blank")
      end
      it 'first_nameが空では登録できない' do
        # emailが空では登録できないテストコードを記述します
        @user.first_name = ''
        @user.valid?
-       #binding.pry
+       
        expect(@user.errors.full_messages).to include("First name can't be blank")
      end
      it 'family_name_kanaが空では登録できない' do
        # family_name_kanaが空では登録できないテストコードを記述します
        @user.family_name_kana = ''
        @user.valid?
-       #binding.pry
+       
        expect(@user.errors.full_messages).to include("Family name kana can't be blank")
      end
      it 'first_name_kanaが空では登録できない' do
        # first_name_kanaが空では登録できないテストコードを記述します
        @user.first_name_kana = ''
        @user.valid?
-       #binding.pry
+       
        expect(@user.errors.full_messages).to include("First name kana can't be blank")
      end
      it 'birth_dayが空では登録できない' do
        # birth_dayが空では登録できないテストコードを記述します
        @user.birth_day = ''
        @user.valid?
-       #binding.pry
+       
        expect(@user.errors.full_messages).to include("Birth day can't be blank")
      end
      it 'passwordが空では登録できない' do
        # passwordが空では登録できないテストコードを記述します
        @user.password = ''
        @user.valid?
-       #binding.pry
+       
        expect(@user.errors.full_messages).to include("Password can't be blank")
      end
      it 'family_name_kanaがカタカナ以外登録できない' do
        # family_name_kanaが空では登録できないテストコードを記述します
        @user.family_name_kana = 'かかか'
        @user.valid?
-       #binding.pry
+       
        expect(@user.errors.full_messages).to include("Family name kana カタカナで入力してね")
      end
      it 'first_name_kanaがカタカナ以外登録できない' do
        # first_name_kanaが空では登録できないテストコードを記述します
        @user.first_name_kana = 'かかか'
        @user.valid?
-       #binding.pry
+       
        expect(@user.errors.full_messages).to include("First name kana カタカナで入力してね")
      end
      it 'passwordとpassword_confirmationが不一致では登録できない' do
        @user.password = 'ko0809ma'
        @user.password_confirmation = 'ko0909ma'
        @user.valid?
-       #binding.pry
+       
        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
      end
      it '重複したemailが存在する場合は登録できない' do
@@ -104,29 +104,29 @@ RSpec.describe User, type: :model do
        another_user = FactoryBot.build(:user)
        another_user.email = @user.email
        another_user.valid?
-       # binding.pry
+      
        expect(another_user.errors.full_messages).to include('Email has already been taken')
      end
      it 'emailは@を含まないと登録できない' do
        @user.email = 'testmail'
        @user.valid?
-      # binding.pry
+      
        expect(@user.errors.full_messages).to include('Email is invalid')
      end
-   end
-   it 'passwordが5文字以下では登録できない' do
-     @user.password = 'ko08'
-     @user.password_confirmation = 'ko08'
-     @user.valid?
-     #binding.pry
-     expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
-   end
-   it 'passwordが129文字以上では登録できない' do
-     @user.password = "ko999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"
-     @user.password_confirmation = @user.password
-     @user.valid?
-     expect(@user.errors.full_messages).to include("Password is too long (maximum is 128 characters)")
-   end
+     end
+     it 'passwordが5文字以下では登録できない' do
+       @user.password = 'ko08'
+       @user.password_confirmation = 'ko08'
+       @user.valid?
+       
+       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+     end
+     it 'passwordが129文字以上では登録できない' do
+       @user.password = "ko999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"
+       @user.password_confirmation = @user.password
+       @user.valid?
+       expect(@user.errors.full_messages).to include("Password is too long (maximum is 128 characters)")
+     end
   end
 end
  
