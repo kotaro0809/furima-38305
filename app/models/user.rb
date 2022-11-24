@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-         validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX, message: "半角英数字を混合してね"}
+         
 
          with_options presence: true do
           validates :nickname
