@@ -77,3 +77,7 @@ gem 'pry-rails'
 #gem factory_botを導入
 gem 'factory_bot_rails'
 
+#Active Storage 導入のためのツール
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+
