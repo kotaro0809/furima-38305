@@ -81,3 +81,5 @@ gem 'factory_bot_rails'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 
+#active_hash導入
+gem 'active_hash'
