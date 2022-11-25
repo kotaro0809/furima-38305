@@ -18,6 +18,10 @@ class User < ApplicationRecord
          end
 
 
+         #アソシエーション
+         has_many :items
+
+
 
          
   
