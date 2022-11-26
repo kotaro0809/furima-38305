@@ -83,3 +83,6 @@ gem 'image_processing', '~> 1.2'
 
 #active_hash導入
 gem 'active_hash'
+
+#faker導入
+gem 'faker'
