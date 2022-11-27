@@ -1,19 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-
   before do
     user = FactoryBot.create(:user)
     @item = FactoryBot.build(:item, user_id: user.id)
   end
 
-  describe "新規出品" do
-    context "新規出品できる時" do
-      it "全ての項目を記入すれば出品できデータベースに保存できる" do
+  describe '新規出品' do
+    context '新規出品できる時' do
+      it '全ての項目を記入すれば出品できデータベースに保存できる' do
         expect(@item).to be_valid
       end
     end
-    context "新規出品できない時" do
+    context '新規出品できない時' do
       it 'item_nameが空の場合' do
         @item.item_name = ''
         @item.valid?
@@ -62,19 +61,18 @@ RSpec.describe Item, type: :model do
       it 'priceが半角数値意外の場合' do
         @item.price = 'aa１１嗚呼嗚呼嗚呼'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceの値が300より安い場合' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it 'priceの値が9999999より高い場合' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
     end
-
   end
 end
