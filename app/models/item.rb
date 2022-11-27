@@ -29,7 +29,6 @@ class Item < ApplicationRecord
     validates :shipping_fee_id
     validates :prefecture_id
     validates :shipping_day_id
-    validates :user_id
     validates :image
   end
 
