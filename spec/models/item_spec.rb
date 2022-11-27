@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    user = FactoryBot.create(:user)
-    @item = FactoryBot.build(:item, user_id: user.id)
+    @item = FactoryBot.build(:item)
   end
 
   describe '新規出品' do
@@ -54,9 +53,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'user_idが空の場合' do
-        @item.user_id = ''
+        @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User can't be blank")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
       it 'priceが半角数値意外の場合' do
         @item.price = 'aa１１嗚呼嗚呼嗚呼'
