@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  
  
   def index
     @item = Item.all.order(created_at: :desc)
@@ -23,29 +22,6 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def edit
-    @item = Item.find(params[:id])
-    unless @item.user_id == current_user.id
-      redirect_to root_path
-    end
-  end
-
-  def update
-    @item = Item.find(params[:id])
-    if @item.update(item_params)
-      redirect_to item_path(@item.id)
-    else
-      render :edit
-    end
-    # item = Item.find(params[:id])
-    # if item.update(item_params) 
-    #   redirect_to item_path(params[:id])
-    # else
-    #   item = Item.find(params[:id])
-    #   render :edit
-    # end
-  end
-
   private
 
   def item_params
@@ -53,6 +29,5 @@ class ItemsController < ApplicationController
                                  :price, :image).merge(user_id: current_user.id)
   end
 
-  
  
 end
