@@ -1,14 +1,14 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :move_to_root, only: [:index]
+  before_action :move_to_root, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id]) 
+    
     @order = PurchaseRecordsDestination.new
   end
 
   def create
-    # binding.pry
+    
     @order = PurchaseRecordsDestination.new(purchase_records_destination_params)
       if  @order.valid?
         @order.save
