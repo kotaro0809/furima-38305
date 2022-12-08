@@ -1,5 +1,5 @@
 const pay = () => {
-  Payjp.setPublicKey("pk_test_45f6a3d5de5c10ab8ee7bf89"); // PAY.JPテスト公開鍵
+  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY); // PAY.JPテスト公開鍵
   const submit = document.getElementById("button");
   submit.addEventListener("click", (e) => {
     e.preventDefault();
@@ -21,13 +21,13 @@ const pay = () => {
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
-        debugger;
       }
+      
+      document.getElementById("card-number").removeAttribute("name");
+      document.getElementById("card-exp-month").removeAttribute("name");
+      document.getElementById("card-exp-year").removeAttribute("name");
+      document.getElementById("card-cvc").removeAttribute("name");
 
-      document.getElementById("order_number").removeAttribute("name");
-      document.getElementById("order_cvc").removeAttribute("name");
-      document.getElementById("order_exp_month").removeAttribute("name");
-      document.getElementById("order_exp_year").removeAttribute("name");
 
       document.getElementById("charge-form").submit();
 
