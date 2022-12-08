@@ -86,3 +86,6 @@ gem 'active_hash'
 
 #faker導入
 gem 'faker'
+
+#payjp導入
+gem 'payjp'
