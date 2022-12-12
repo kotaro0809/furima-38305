@@ -5,14 +5,12 @@ RSpec.describe PurchaseRecord, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @order = FactoryBot.build(:purchase_records_destination, user_id: user.id, item_id: item.id)
-    sleep 0.05  
+    sleep 0.05
   end
 
   describe '商品購入' do
-
-    context "住所が保存できる時" do
-
-      it "項目を全て入力すれば保存できる" do
+    context '住所が保存できる時' do
+      it '項目を全て入力すれば保存できる' do
         expect(@order).to be_valid
       end
 
@@ -25,12 +23,9 @@ RSpec.describe PurchaseRecord, type: :model do
         @order.building = nil
         expect(@order).to be_valid
       end
-   
     end
-   
-    
+
     context '配送情報が保存できない時' do
-      
       it '郵便番号が空では保存できない' do
         @order.post_code = nil
         @order.valid?
@@ -38,19 +33,19 @@ RSpec.describe PurchaseRecord, type: :model do
       end
 
       it '郵便番号にハイフンがなければ保存できない' do
-        @order.post_code = "1234567"
+        @order.post_code = '1234567'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@order.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
 
       it '郵便番号のハイフンの位置が123-4567以外である場合保存できない' do
-        @order.post_code = "12345-67"
+        @order.post_code = '12345-67'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@order.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
 
       it 'cityが空の場合は保存できない' do
-        @order.city = ""
+        @order.city = ''
         @order.valid?
         expect(@order.errors.full_messages).to include("City can't be blank")
       end
@@ -80,21 +75,21 @@ RSpec.describe PurchaseRecord, type: :model do
       end
 
       it 'phon_numberにハイフンが入ると登録できない' do
-        @order.phon_number = 123-2222-2222
+        @order.phon_number = 123 - 2222 - 2222
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phon number is invalid")
+        expect(@order.errors.full_messages).to include('Phon number is invalid')
       end
 
       it '電話番号が9桁以下だと登録できない' do
-        @order.phon_number = 123456789
+        @order.phon_number = 123_456_789
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phon number is invalid")
+        expect(@order.errors.full_messages).to include('Phon number is invalid')
       end
 
       it '電話番号が12桁以上だと登録できない' do
-        @order.phon_number = 123456789012
+        @order.phon_number = 123_456_789_012
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phon number is invalid")
+        expect(@order.errors.full_messages).to include('Phon number is invalid')
       end
 
       it 'tokenが空の場合は保存できない' do
@@ -108,17 +103,14 @@ RSpec.describe PurchaseRecord, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("User can't be blank")
       end
-      
+
       it 'item_id（購入者）が空だと購入できない' do
         @order.item_id = nil
         @order.valid?
         expect(@order.errors.full_messages).to include("Item can't be blank")
       end
-
     end
-
   end
-
 end
 
-#bundle exec rspec spec/models/purchase_records_destination_spec.rb
+# bundle exec rspec spec/models/purchase_records_destination_spec.rb
