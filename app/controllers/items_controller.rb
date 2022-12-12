@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_root, only: [:edit, :destroy]
- 
+
   def index
     @item = Item.all.order(created_at: :desc)
   end
@@ -21,15 +21,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-   
   end
 
   def edit
-   
   end
 
   def update
-   
     if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
@@ -38,11 +35,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    return unless @item.destroy
 
-    if @item.destroy
-        redirect_to root_path
-    end
-
+    redirect_to root_path
   end
 
   private
@@ -54,12 +49,11 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-  end 
+  end
 
   def move_to_root
-    unless @item.user_id == current_user.id
-      redirect_to root_path
-    end
+    return unless @item.user_id != current_user.id || @item.purchase_record.present?
+
+    redirect_to root_path
   end
 end
-
