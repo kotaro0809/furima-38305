@@ -85,16 +85,30 @@ RSpec.describe PurchaseRecord, type: :model do
         expect(@order.errors.full_messages).to include("Phon number is invalid")
       end
 
+      it '電話番号が9桁以下だと登録できない' do
+        @order.phon_number = 123456789
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phon number is invalid")
+      end
+
+      it '電話番号が12桁以上だと登録できない' do
+        @order.phon_number = 123456789012
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phon number is invalid")
+      end
+
       it 'tokenが空の場合は保存できない' do
         @order.token = nil
         @order.valid?
         expect(@order.errors.full_messages).to include("Token can't be blank")
       end
+
       it 'user_id（購入者）が空だと購入できない' do
         @order.user_id = nil
         @order.valid?
         expect(@order.errors.full_messages).to include("User can't be blank")
       end
+      
       it 'item_id（購入者）が空だと購入できない' do
         @order.item_id = nil
         @order.valid?
