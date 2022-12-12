@@ -10,7 +10,7 @@ class PurchaseRecordsDestination
     validates :city
     validates :address
     validates :phon_number, format: { with: /\A[0-9]{11}\z/, message: 'is invalid' }
-    validates :token, presence: true
+    validates :token
     
   end
   validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
